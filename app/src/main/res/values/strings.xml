@@ -49,7 +49,7 @@
     <string name="workout_notification_time">Time</string>
     <string name="workout_notification_pause">Pause</string>
     <string name="workout_notification_resume">Resume</string>
-    <string name="reminder_notification_title">Let's go</string>
+    <string name="reminder_notification_title">Let\'s go</string>
 
 
     <!--###HELP###-->
