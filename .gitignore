@@ -1,3 +1,8 @@
+# VSCode
+*.project
+*.settings*
+*.classpath
+
 # Keystore
 release-key.jks
 
