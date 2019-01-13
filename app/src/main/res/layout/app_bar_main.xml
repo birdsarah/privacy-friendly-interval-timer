@@ -19,17 +19,6 @@
         android:layout_gravity="bottom|right"
         android:weightSum="1">
 
-        <TextView
-            android:id="@+id/main_text_rest_interval"
-            android:layout_width="83dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:gravity="center"
-            android:text="@string/main_text_start"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp"
-            android:textStyle="bold|italic" />
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/start_workout"
             android:layout_width="69dp"
