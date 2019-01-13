@@ -498,21 +498,6 @@ public class WorkoutActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        if(isCaloriesEnabled(this)){
-            TextView txt = (TextView)findViewById(R.id.workout_finished_calories_text);
-            TextView nmbr = (TextView)findViewById(R.id.workout_finished_calories_number);
-            TextView unit = (TextView)findViewById(R.id.workout_finished_calories_unit);
-
-            txt.setVisibility(View.VISIBLE);
-            nmbr.setVisibility(View.VISIBLE);
-            unit.setVisibility(View.VISIBLE);
-
-            if(timerService != null){
-                String caloriesBurned = Integer.toString(timerService.getCaloriesBurned());
-                this.caloriesNumber.setText(caloriesBurned);
-            }
-        }
     }
 
     @Override
