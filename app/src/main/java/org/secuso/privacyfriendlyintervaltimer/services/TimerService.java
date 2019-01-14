@@ -460,6 +460,16 @@ public class TimerService extends Service {
         }
     }
 
+    public String getTimerTextFromSeconds(int seconds) {
+        int minutes = seconds / 60;
+        int remainder = seconds - (minutes * 60);
+        String remainderString = String.format("%02d", remainder); 
+        String timerText = Integer.toString(minutes) + ":" + remainderString;
+        if (minutes == 0) {
+            timerText = remainderString;
+        }
+        return timerText;
+    }
 
     /**
      * Switch to the previous timer
@@ -623,8 +633,8 @@ public class TimerService extends Service {
 
         String message = "";
         message = currentTitle;
-        message += " | "+ this.getResources().getString(R.string.workout_notification_time)+ ": " + time;
-        message += " | "+ this.getResources().getString(R.string.workout_info)+ ": " + currentSet + "/" + sets;
+        message += " | " + getTimerTextFromSeconds(time);
+        message += " | " + this.getResources().getString(R.string.workout_info)+ ": " + currentSet + "/" + sets;
 
         RemoteViews notificationView = new RemoteViews(getPackageName(), R.layout.workout_notification);
 
@@ -799,7 +809,7 @@ public class TimerService extends Service {
         if (this.settings != null) {
             return settings.getBoolean(context.getString(R.string.pref_sounds_muted), true);
         }
-        return true;
+        return false;
     }
 
 

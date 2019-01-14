@@ -228,7 +228,7 @@ public class WorkoutActivity extends AppCompatActivity {
                 }
                 if (intent.getIntExtra("countdown_seconds", -1) != -1) {
                     int seconds = intent.getIntExtra("countdown_seconds", 0);
-                    workoutTimer.setText(Integer.toString(seconds));
+                    workoutTimer.setText(timerService.getTimerTextFromSeconds(seconds));
                 }
                 if (intent.getIntExtra("current_set", 0) != 0 && intent.getIntExtra("sets", 0) != 0) {
                     int currentSet = intent.getIntExtra("current_set", 0);
@@ -242,7 +242,7 @@ public class WorkoutActivity extends AppCompatActivity {
                 if (intent.getLongExtra("new_timer", 0) != 0) {
                     long timerDuration = intent.getLongExtra("new_timer", 0);
                     int seconds = (int) Math.ceil(timerDuration / 1000.0);
-                    workoutTimer.setText(Integer.toString(seconds));
+                    workoutTimer.setText(timerService.getTimerTextFromSeconds(seconds));
                     progressBar.setMax((int) timerDuration);
                     progressBar.setProgress((int) timerDuration);
                     this.oldTimeStamp = workoutBlinkingTime + workoutBlinkingTime;
@@ -379,11 +379,9 @@ public class WorkoutActivity extends AppCompatActivity {
                 setWorkoutGuiColors(false);
             }
 
-            String time = Long.toString((int) Math.ceil(savedTime / 1000.0));
-
             currentSetsInfo.setText(getResources().getString(R.string.workout_info) +": "+Integer.toString(currentSet)+"/"+Integer.toString(sets));
             workoutTitle.setText(title);
-            workoutTimer.setText(time);
+            workoutTimer.setText(timerService.getTimerTextFromSeconds((int) Math.ceil(savedTime / 1000.0)));
             progressBar.setMax((int) timerDuration);
             progressBar.setProgress((int) savedTime);
             progressBar.setAlpha(1.0f);
@@ -623,7 +621,7 @@ public class WorkoutActivity extends AppCompatActivity {
         if (this.settings != null) {
             return settings.getBoolean(context.getString(R.string.pref_sounds_muted), true);
         }
-        return true;
+        return false;
     }
 
     public boolean isCancelDialogEnabled(Context context) {
